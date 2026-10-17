@@ -1,0 +1,5 @@
+# Original game files and everything extracted or derived from them stay local.
+original/
+work/
+build/
+tools/__pycache__/
