@@ -20,7 +20,7 @@ import sys
 from zipfile import ZIP_DEFLATED, ZipFile
 
 stage = Path(sys.argv[1])
-output = Path("build/crayons-portable-win11.zip")
+output = Path("build/Crayons-Windows-11.zip")
 files = sorted(path for path in stage.rglob("*") if path.is_file())
 with ZipFile(output, "w", compression=ZIP_DEFLATED) as archive:
     for path in files:

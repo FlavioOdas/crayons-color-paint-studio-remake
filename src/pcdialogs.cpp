@@ -75,7 +75,7 @@ void JukeboxDialog::mouseDown(int x, int y, int button) {
     else if (exit_.contains(x, y)) sound_(92), close();                      // Image8Click 1000:0aa8
 }
 
-AboutDialog::AboutDialog(App& app, int level, std::function<void(int)> sound) : Dialog(app, 3, true), sound_(std::move(sound)) {
+AboutDialog::AboutDialog(App& app, int level, std::function<void(int)> sound) : Dialog(app, 3), sound_(std::move(sound)) {
     const dfm::Component* form = app.assets().form(level, "TABOUTME");
     colour = RGB(0, 0, 0);
     caption = L"About This Program";

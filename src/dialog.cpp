@@ -63,7 +63,7 @@ void Dialog::repaint() {
     DrawTextW(dc, caption.c_str(), int(caption.size()), &text, DT_LEFT | DT_VCENTER | DT_SINGLELINE | DT_NOPREFIX);
     SelectObject(dc, old);
     DeleteObject(font);
-    // Close box (16x14); Taboutme has biSystemMenu, while the other modal forms do not.
+    // Close box (16x14).
     const int bx = w - kFrame - 2 - 16, by = kFrame + 2;
     fill(dc, bx, by, bx + 16, by + 14, kFace);
     hline(dc, bx, bx + 15, by, kLight), vline(dc, bx, by, by + 13, kLight);
@@ -77,8 +77,8 @@ void Dialog::repaint() {
     }
     for (int i = 0; i < 6; ++i) {
         for (int t = 0; t < 2; ++t) {
-            SetPixelV(dc, bx + 4 + i + t, by + 3 + i, systemMenu_ ? kDark : kShadow);
-            SetPixelV(dc, bx + 9 - i + t, by + 3 + i, systemMenu_ ? kDark : kShadow);
+            SetPixelV(dc, bx + 4 + i + t, by + 3 + i, kDark);
+            SetPixelV(dc, bx + 9 - i + t, by + 3 + i, kDark);
         }
     }
     // Separator line and client area.
@@ -121,7 +121,7 @@ void Dialog::close() {
 }
 
 void Dialog::chromeMouseDown(int x, int y, int button) {
-    if (!systemMenu_ || button != 0) return;
+    if (kFrame == 0 || button != 0) return;
     const int left = left_ + width_ - kFrame - 2 - 16;
     const int top = top_ + kFrame + 2;
     if (x >= left && x < left + 16 && y >= top && y < top + 14) close();

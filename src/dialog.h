@@ -15,8 +15,8 @@
 class Dialog {
 public:
     static constexpr int kCaption = 18;
-    explicit Dialog(App& app, int frame = 4, bool systemMenu = false)
-        : app_(app), kFrame(frame), kNonClientTop(frame ? frame + kCaption + 1 : 0), systemMenu_(systemMenu) {}
+    explicit Dialog(App& app, int frame = 4)
+        : app_(app), kFrame(frame), kNonClientTop(frame ? frame + kCaption + 1 : 0) {}
     virtual ~Dialog() = default;
 
     void setBounds(int left, int top, int width, int height);  // window size, like Delphi
@@ -55,7 +55,6 @@ private:
     View view_;
     int left_ = 0, top_ = 0, width_ = 0, height_ = 0;
     bool closed_ = false;
-    bool systemMenu_ = false;
     const HintSource* hints_ = nullptr;
     HintPanel hint_;
     bool hintTimer_ = false, hintArmed_ = false;

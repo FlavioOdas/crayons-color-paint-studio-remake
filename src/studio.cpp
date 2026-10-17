@@ -283,8 +283,8 @@ void Studio::showDialog(std::unique_ptr<Dialog> dialog) {
 
 void Studio::finishDialog() {
     if (!dialog_ || !dialog_->closed()) return;
-    std::function<void()> then = std::move(dialog_->onClose);
-    dialog_.reset();
+    std::unique_ptr<Dialog> closedDialog = std::move(dialog_);
+    std::function<void()> then = std::move(closedDialog->onClose);
     if (then) then();
 }
 
